@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserDAO userDAO;
@@ -17,7 +18,7 @@ public class UserService {
     }
 
     public Optional<User> getUserById(int userId){
-        return userDAO.findById(userId);
+        return userDAO.findByUserId(userId);
     }
 
     public List<User> getAllUsers(){
@@ -25,6 +26,7 @@ public class UserService {
     }
 
     public User createNewUser(User user){
+
         return userDAO.save(user);
     }
 

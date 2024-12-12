@@ -3,6 +3,7 @@ package com.revature.Controllers;
 import java.util.List;
 import java.util.Optional;
 
+import com.revature.Models.Product;
 import com.revature.Models.User;
 import com.revature.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService){
@@ -41,8 +42,9 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{userID}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<User> getUserHandler(@PathVariable int userId){
+        System.out.println(userId);
         Optional<User> possibleUser = userService.getUserById(userId);
 
         if(possibleUser.isPresent()){
@@ -50,5 +52,10 @@ public class UserController {
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("/user")
+    public List<User> getAllUserHandler(){
+        return userService.getAllUsers();
     }
 }
