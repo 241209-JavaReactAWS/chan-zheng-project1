@@ -6,11 +6,10 @@ function Nav() {
     <div>
         <nav>
         <ul>
-            <li><Link to="/">home page</Link></li>
-            <li><Link to="/login">login page</Link></li>
-            <li><Link to="/signup">signup page</Link></li>
-            <li><Link to="/landing">products page</Link></li>
-            <li><Link to="/admin">admin page</Link></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Sign up</Link></li>
+            <li><Link to="/">About</Link></li>
+            <li><Link to="/admin">Admin</Link></li>
         </ul>
     </nav>
     </div>
