@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import com.revature.Models.Product;
+import com.revature.Models.Role;
 import com.revature.Services.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +25,10 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProductHandler(@RequestBody Product product){
+    public ResponseEntity<Product> createProductHandler(HttpSession session, @RequestBody Product product){
+        if(session.isNew() || !Role.ADMIN.equals(session.getAttribute("role"))) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
         Product possibleProduct = productService.createNewProduct(product);
 
         return new ResponseEntity<>(possibleProduct, HttpStatus.CREATED);
@@ -46,12 +51,16 @@ public class ProductController {
     }
 
     @PatchMapping("{productId}")
-    public ResponseEntity<Integer> updateProductHandler(@PathVariable int productId, @RequestBody Product product){
+    public ResponseEntity<Product> updateProductHandler(HttpSession session, @PathVariable int productId, @RequestBody Product product){
+        if(session.isNew() || !Role.ADMIN.equals(session.getAttribute("role"))) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         Optional<Product> possibleProduct = productService.getProductById(productId);
 
         if(possibleProduct.isPresent()){
             productService.updateProductById(productId, product);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(possibleProduct.get(), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -59,11 +68,18 @@ public class ProductController {
     }
 
     @DeleteMapping("{productId}")
-    public ResponseEntity<Integer> deleteProductHandler(@PathVariable int productId){
+    public ResponseEntity<Integer> deleteProductHandler(HttpSession session, @PathVariable int productId){
+        if(session.isNew() || !Role.ADMIN.equals(session.getAttribute("role"))) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
         Optional<Product> possibleProduct = productService.getProductById(productId);
 
         if(possibleProduct.isPresent()){
-            productService.deleteProductById(productId);
+            boolean status = productService.deleteProductById(productId);
+            if(!status){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             return new ResponseEntity<>(HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
