@@ -1,28 +1,39 @@
 package com.revature.Models;
 
 import jakarta.persistence.*;
+
+import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User {
 
-    @Column (name = "userId")
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    @Column (name = "username")
+    @Column (name = "username", unique = true)
     private String username;
     @Column (name = "password")
     private String password;
-    @Column (name = "admin")
-    private boolean admin;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_products",
+            joinColumns = @JoinColumn(name = "userId"),
+            inverseJoinColumns = @JoinColumn(name = "productId")
+    )
+    private Set<Product> favorites;
 
     public User(){
     }
     
-    public User(int userId, String username, String password, boolean admin){
+    public User(int userId, String username, String password, Role role){
         this.userId = userId;
         this.username = username;
         this.password = password;
-        this.admin = admin;
+        this.role = role;
     }
     public void setUserID(int userId){
         this.userId = userId;
@@ -36,8 +47,12 @@ public class User {
         this.password = password;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setFavorites(Set<Product> favorites) {
+        this.favorites = favorites;
     }
 
     public int getUserId() {
@@ -52,7 +67,11 @@ public class User {
         return password;
     }
 
-    public boolean isAdmin() {
-        return admin;
+    public Role getRole() {
+        return role;
+    }
+
+    public Set<Product> getFavorites(){
+        return favorites;
     }
 }

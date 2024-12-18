@@ -28,21 +28,25 @@ public class ProductService {
     public Optional<Product> getProductById(int productId){
         return productDAO.findById(productId);
     }
+
     @Transactional
     public void updateProductById(int productId, Product product){
         Product oldProduct = productDAO.findByProductId(productId);
 
         if (product != null){
+            oldProduct.setImage(product.getImage());
             oldProduct.setName(product.getName());
             oldProduct.setPrice(product.getPrice());
             oldProduct.setDescription(product.getDescription());
+            oldProduct.setLink(product.getLink());
         }
     }
+
     @Transactional
     public boolean deleteProductById(int productId){
         Optional<Product> product = productDAO.findById(productId);
 
-        if (product != null){
+        if (product.isPresent()){
             productDAO.deleteByProductId(productId);
             return true;
         }
