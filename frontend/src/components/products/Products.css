@@ -9,7 +9,7 @@
     margin: 3rem auto; 
     padding: 3rem 1rem;
 }
-img{
+.preview-product img{
     width:200px;
     height: 200px;
     object-fit: contain;
@@ -20,7 +20,7 @@ img{
     margin-bottom: 1rem;
     transition: transform 0.3s ease; 
 }
-button{
+.preview-product button{
     background-color: #1b5e20;  
     color: white;
     padding: 10px 20px;

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Nav from './components/nav/Nav'
 import Footer from './components/footer/Footer'
 import About from './pages/about/About'
-import Home from './pages/Home'
+import Home from './pages/home/Home'
 import Admin from './pages/Admin'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
@@ -21,9 +21,9 @@ function App() {
       </header>
       <main>
       <Routes>
-        <Route path="/home" element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/admin" element={<Admin />}/>
-        <Route path="/" element={<About />}/>
+        <Route path="/about" element={<About />}/>
         <Route path="/signup" element={<Signup />}/>
         <Route path="/login" element={<Login />}/>
       </Routes>
