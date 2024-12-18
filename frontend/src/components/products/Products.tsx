@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { Item } from "../components/Item";
-import './Home.css'
+import React, { useEffect, useState } from 'react'
+import { Item } from "../Interface/Item";
+import "./Products.css"
+import axios from 'axios';
 
-function Home() {
-    type itemPreview = Pick<Item,'id'|'name'|'image'|'price'>;
+interface ProductsProps{
+    limit?:number
+}
+function Products({limit}:ProductsProps) {
+    type itemPreview = Pick<Item,'id'|'name'|'image'|'price'|'link'>;
     const [products,setProducts] = useState<itemPreview[]>([]);
-
     const mockProducts =[
         {
             id: 1,
@@ -19,17 +22,21 @@ function Home() {
             name:'Ryzen 5 5600',
             image:'https://m.media-amazon.com/images/I/71BSRcxVA0L._AC_UF894,1000_QL80_.jpg',
 
-        },{
-            id:3,
-            price:1000,
-            name:'Ryzen 5 5600',
-            image:'https://m.media-amazon.com/images/I/71BSRcxVA0L._AC_UF894,1000_QL80_.jpg',
         }
-
     ];
     useEffect(()=>{
-        setProducts(mockProducts);
-    },[]);
+    //     setProducts(mockProducts.slice(0,9))
+    // },[]);
+        axios.get<itemPreview[]>("http://localhost:8080/product")
+        .then((res) =>{
+            const data = res.data;
+            const limitedProducts = limit ? data.slice(0,limit) : data;
+            setProducts(limitedProducts)
+        })
+        .catch((error)=>{
+            console.error("Error fetching products:",error);
+        })
+    },[limit]);
     
     return (
         <div className='preview-product'>
@@ -41,11 +48,12 @@ function Home() {
                     <h1>{product.name}</h1>
                 </div>  
                     
-                <button><a href = "../product/product.html">View More</a></button>
+                <button><a href = {product.link}>View More</a></button>
                 </div>
             ))}
-        </div>
-    );
-};
+    </div>
+  )
+}
 
-export default Home
+
+export default Products

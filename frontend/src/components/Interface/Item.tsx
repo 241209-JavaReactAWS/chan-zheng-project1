@@ -4,4 +4,5 @@ export interface Item{
     price: number;
     description: string;
     image: string
+    link:string
 }
