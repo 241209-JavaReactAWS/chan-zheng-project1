@@ -2,6 +2,7 @@ import { FormEvent, SyntheticEvent, useContext, useState } from "react"
 import { authContext } from "../../App"
 import "./Login.css"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 function Login() {
   const auth = useContext(authContext)
@@ -9,6 +10,7 @@ function Login() {
   const [username,setUsername] = useState<string>('')
   const [password,setPassword] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
+  const navigate = useNavigate()
   
   function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault()
@@ -23,7 +25,7 @@ function Login() {
         return;
     }
     //send request
-    axios.post("http://localhost:8080/login",{username,password},
+    axios.post("http://192.168.0.227:8080/login",{username,password},
         {withCredentials:true}
         //allows the JSESSION cookie to be sent, needs when require session
     ).then((res) => {
@@ -31,7 +33,8 @@ function Login() {
         if (auth) {
           auth.setUsername(res.data.username)
           auth.setRole(res.data.role)
-          alert("login success")
+          console.log("login success")
+          navigate("/")
         }
     })
   }

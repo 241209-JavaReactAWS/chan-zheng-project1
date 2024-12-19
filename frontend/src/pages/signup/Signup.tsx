@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./Signup.css"
 import axios from "axios"
 import { SyntheticEvent, useState } from "react"
@@ -7,36 +7,38 @@ function Signup() {
     const [username,setUsername] = useState<string>('')
     const [admin,setAdmin] = useState<boolean>(false)
     const [password,setPassword] = useState<string>('')
-  const [confirmPassword,setConfirmPassword] = useState<string>('')
-  const [showPassword,setShowPassword] = useState<boolean>(false)
+    const [confirmPassword,setConfirmPassword] = useState<string>('')
+    const [showPassword,setShowPassword] = useState<boolean>(false)
+    const navigate = useNavigate()
 
-  const handleSubmit = async (e:SyntheticEvent)=>{
-    e.preventDefault()
-    console.log("Sign up!")
-    if(!username){
-      alert("Please enter a username")
-      return;
-    }
-    if(!password){
-        alert("Please enter a password")
+    const handleSubmit = async (e:SyntheticEvent)=>{
+        e.preventDefault()
+        console.log("Sign up!")
+        if(!username){
+        alert("Please enter a username")
         return;
-    }
-    if(password!=confirmPassword){
-        alert("Password is different from confirmation password,please check!")
-        return;
-    }
-    //send request
-    try{
-        const res = await axios.post("http://localhost:8080/register",{username,password,admin},
-        {withCredentials:true});
-        //allows the JSESSION cookie to be sent, needs when require session
-        console.log(res.data);
-        alert("Registration successful!")
+        }
+        if(!password){
+            alert("Please enter a password")
+            return;
+        }
+        if(password!=confirmPassword){
+            alert("Password is different from confirmation password,please check!")
+            return;
+        }
+        //send request
+        try{
+            const res = await axios.post("http://192.168.0.227:8080/register",{username,password,admin},
+            {withCredentials:true});
+            //allows the JSESSION cookie to be sent, needs when require session
+            console.log(res.data);
+            console.log("Registration successful!")
+            navigate('/login')
         
-    } catch(error:any){
-        alert(`Registration failed:${error.response.data.message||'Unknown error'}`)
+        } catch(error:any){
+            alert(`Registration failed:${error.response.data.message||'Unknown error'}`)
+        }
     }
-  }
 
     const togglePassword = (e:SyntheticEvent) =>{
         e.preventDefault();
