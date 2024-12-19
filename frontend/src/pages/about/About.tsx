@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom"
 import "./About.css"
+import { useContext } from "react"
+import { authContext } from "../../App"
 
 function About() {
+  const auth = useContext(authContext)
+  
   return (
     <div className="main-content">
         <div className="welcome-section">
@@ -12,7 +16,12 @@ function About() {
            stores—all in one place!
         </p>
         </div>
-        <button id="button"><Link to = "/login">Start Shopping</Link></button>
+        <button id="button">
+          {auth?.role == "unauth" ?
+          <Link to = "/login">Start Shopping</Link> :
+          <Link to = "/">Start Shopping</Link>
+          }
+        </button>
     </div>
   )
 }

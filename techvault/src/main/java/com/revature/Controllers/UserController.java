@@ -85,7 +85,7 @@ public class UserController {
 
         return new ResponseEntity<>(returnedUser, HttpStatus.OK);
     }
-    @GetMapping("/user/{userId}")
+    @GetMapping("/users/{userId}")
     public ResponseEntity<User> getUserHandler(HttpSession session, @PathVariable int userId){
 
         if(session.isNew() || !Role.ADMIN.equals(session.getAttribute("role"))) {
@@ -102,7 +102,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/user")
+    @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUserHandler(HttpSession session){
 
         if(session.isNew() || !Role.ADMIN.equals(session.getAttribute("role"))) {
@@ -110,5 +110,16 @@ public class UserController {
         }
 
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<User> getUserInfoHandler(HttpSession session){
+        if (session.isNew() || session.getAttribute("username") == null){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        User user = userService.getUserByUsername( (String) session.getAttribute("username"));
+
+        return ResponseEntity.ok(user);
     }
 }

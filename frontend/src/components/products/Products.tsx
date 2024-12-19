@@ -9,25 +9,8 @@ interface ProductsProps{
 function Products({limit}:ProductsProps) {
     type itemPreview = Pick<Item,'id'|'name'|'image'|'price'|'link'>;
     const [products,setProducts] = useState<itemPreview[]>([]);
-    const mockProducts =[
-        {
-            id: 1,
-            name:'Ryzen 5 5600',
-            image:'https://m.media-amazon.com/images/I/71BSRcxVA0L._AC_UF894,1000_QL80_.jpg',
-            price:1000
-        },
-        {   
-            id:2,
-            price:1000,
-            name:'Ryzen 5 5600',
-            image:'https://m.media-amazon.com/images/I/71BSRcxVA0L._AC_UF894,1000_QL80_.jpg',
-
-        }
-    ];
     useEffect(()=>{
-    //     setProducts(mockProducts.slice(0,9))
-    // },[]);
-        axios.get<itemPreview[]>("http://localhost:8080/product")
+        axios.get<itemPreview[]>("http://192.168.0.227:8080/product")
         .then((res) =>{
             const data = res.data;
             const limitedProducts = limit ? data.slice(0,limit) : data;
