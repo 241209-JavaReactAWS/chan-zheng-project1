@@ -1,3 +1,6 @@
+out/
+*.mv.db
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -56,3 +59,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
