@@ -5,7 +5,7 @@ import { SyntheticEvent, useState } from "react"
 
 function Signup() {
     const [username,setUsername] = useState<string>('')
-    const [admin,setAdmin] = useState<boolean>(false)
+    const [admin,setAdmin] = useState<string>('')
     const [password,setPassword] = useState<string>('')
   const [confirmPassword,setConfirmPassword] = useState<string>('')
   const [showPassword,setShowPassword] = useState<boolean>(false)
@@ -55,9 +55,9 @@ function Signup() {
             <div className="form-group">
                 <label htmlFor="role">Role</label>
                 <select className="input-sec" id="role" 
-                onChange={(e:SyntheticEvent)=>{setAdmin((e.target as HTMLSelectElement).value==="true"?true:false)}}>
-                    <option value="true">Admin</option>
-                    <option value="false">User</option>
+                onChange={(e:SyntheticEvent)=>{setAdmin((e.target as HTMLSelectElement).value)}}>
+                    <option value="ADMIN">Admin</option>
+                    <option value="USER">User</option>
                 </select>
             </div>
     
