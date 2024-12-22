@@ -15,17 +15,19 @@ export const useUserAuth = () => {
 
     useEffect(() => {
         axios
-          .get<User>('http://192.168.0.227:8080/users', { withCredentials: true })
+          .get<User>('http://192.168.0.227:8080/user', { withCredentials: true })
           .then((res) => {
             setUsername(res.data.username);
             setRole(res.data.role);
+            console.log(res.data.username);
+            console.log(res.data.role);
           })
           .catch((err) => {
             console.log(err);
             setUsername('');
             setRole('unauth');
           });
-      }, []);
+      }, []); 
 
       return {username, setUsername, role, setRole}
 }
