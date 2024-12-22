@@ -7,7 +7,7 @@ function Home() {
     return (
         <div className="home-container">
             <div className="prducts-wrapper">
-                <Products limit={15}/>
+                <Products limit={8}/>
             </div>
         
         </div>

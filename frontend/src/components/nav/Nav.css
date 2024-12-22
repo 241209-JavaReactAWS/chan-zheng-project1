@@ -1,7 +1,6 @@
 nav {
     background-color: #3498db;
-    padding: 1rem 0;
-
+    padding: 0.25rem 0; /* Reduced padding to make the navbar thinner */
 }
 
 nav ul {
@@ -16,7 +15,7 @@ nav ul {
 
 nav ul li {
     position: relative;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
 }
 
 nav ul li a {
@@ -24,9 +23,10 @@ nav ul li a {
     color: #ecf0f1;
     font-weight: 500;
     transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 0.8rem; 
     position: relative;
     overflow: hidden;
+    font-size: 0.9rem;
 }
 
 nav ul li a:hover {

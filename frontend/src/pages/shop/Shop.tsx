@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { authContext } from "../App";
-import { Item } from "../components/Interface/Item";
+import { authContext } from "../../App";
+import { Item } from "../../components/Interface/Item";
 import axios from "axios";
 
 function Shop() {

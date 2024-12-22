@@ -5,7 +5,10 @@ import LogoImage from "../../assets/techLogo.png"
 function Logo() {
   return (
     <div className='brand-name'>
-        <Link to = "/"><h1>TechVault</h1><img src={LogoImage}></img></Link>
+        <Link to = "/">
+          <img src={LogoImage}/>
+          <h1>TechVault</h1>
+        </Link>
     </div>
   )
 }

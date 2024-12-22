@@ -1,16 +1,22 @@
-
-.content{
-    flex:1;
+body {
+    overflow-x: hidden; 
 }
+
+.content {
+    flex: 1;
+}
+
 .form-container {
-    max-width: 400px;
+    max-width: 100%; 
+    width: 400px; 
     margin: 100px auto 40px;
     padding: 2rem;
     background: white;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 0 20px #666;
+    box-sizing: border-box; 
 }
-.form-title{
+.form-title {
     text-align: center;
     color: #2874a6;
     margin-bottom: 2rem;
@@ -51,7 +57,7 @@ label {
 }
 
 .show-password {
-    margin:auto;
+    margin: auto;
     transform: translateY(-50%);
     background: none;
     border: none;
@@ -90,6 +96,6 @@ label {
     text-decoration: none;
 }
 
-.login-link hover {
+.login-link:hover {
     text-decoration: underline;
 }
