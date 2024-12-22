@@ -19,7 +19,7 @@ function Shop() {
 
     useEffect(() => {
         axios
-            .get<Item[]>(`http://192.168.0.227:8080/product`)
+            .get<Item[]>(`http://localhost:8080/product`)
             .then((res) => {
                 setAllproduct(res.data);
             })
@@ -40,7 +40,7 @@ function Shop() {
         e.preventDefault();
         
         // POST the new product to the server
-        axios.post(`http://192.168.0.227:8080/product`, newProduct,  { withCredentials: true })
+        axios.post(`http://localhost:8080/product`, newProduct, { withCredentials: true })
             .then((response) => {
                 console.log("Product created:", response.data);
                 setAllproduct([...allProduct, response.data]); // Add new product to the list
@@ -48,6 +48,33 @@ function Shop() {
             })
             .catch((error) => {
                 console.error("Error creating product:", error);
+            });
+    };
+
+    // Function to handle deleting a product
+    const deleteProduct = (productId: number) => {
+        axios
+            .delete(`http://localhost:8080/product/${productId}`, { withCredentials: true })
+            .then((response) => {
+                console.log("Product deleted:", response.data);
+                // Remove the deleted product from the list
+                setAllproduct(allProduct.filter((product) => product.productId !== productId));
+            })
+            .catch((error) => {
+                console.error("Error deleting product:", error);
+            });
+    };
+
+    // Function to handle adding a product to favorites
+    const addToFavorites = (productId: number) => {
+        axios
+            .post(`http://localhost:8080/favorites/${productId}`, {}, { withCredentials: true })
+            .then((response) => {
+                console.log("Product added to favorites:", response.data);
+                // Optionally, handle UI feedback (e.g., change button state or show message)
+            })
+            .catch((error) => {
+                console.error("Error adding product to favorites:", error);
             });
     };
 
@@ -131,6 +158,7 @@ function Shop() {
                         <th>Name</th>
                         <th>Price</th>
                         <th>Link</th>
+                        <th>Actions</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -153,6 +181,26 @@ function Shop() {
                                     >
                                         View More
                                     </Link>
+                                </td>
+                                <td>
+                                    {auth?.role === 'ADMIN' && (
+                                        <button
+                                            onClick={() => deleteProduct(product.productId)}
+                                            className="delete-product-button"
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
+
+                                    {/* Favorite button */}
+                                    {auth && (
+                                        <button
+                                            onClick={() => addToFavorites(product.productId)}
+                                            className="favorite-product-button"
+                                        >
+                                            Add to Favorites
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         );

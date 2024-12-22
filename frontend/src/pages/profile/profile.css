@@ -7,16 +7,15 @@
 .user-info {
   flex: 0.1;
   background-color: #f4f4f4;
-  padding: 10px 20px;  /* Reduced padding */
+  padding: 10px 20px;  
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: black;
-  max-height: 150px; /* Optional: Set a max-height to control the height */
-  overflow: auto;    /* Optional: Allow scrolling if content exceeds max-height */
+  max-height: 300px; 
 }
 
 .products-showcase {
-  flex: 0.9;
+  flex: 0.8;
 }
 
 .products-showcase h2 {

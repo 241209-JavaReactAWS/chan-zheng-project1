@@ -118,3 +118,26 @@
     background-color: #c0392b;
   }
   
+  .delete-product-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-product-button:hover {
+    background-color: darkred;
+}
+
+.favorite-product-button {
+  background-color: #ffcc00;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.favorite-product-button:hover {
+  background-color: #ff9900;
+}

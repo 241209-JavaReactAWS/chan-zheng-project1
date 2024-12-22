@@ -10,7 +10,7 @@ function Product() {
 
     useEffect(() => {
         if (productId) {  
-            axios.get<Item>(`http://192.168.0.227:8080/product/${productId}`) 
+            axios.get<Item>(`http://localhost:8080/product/${productId}`) 
                 .then((res) => {
                     setProduct(res.data);
                 })
