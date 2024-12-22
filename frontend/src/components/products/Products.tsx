@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Item } from '../Interface/Item';
 import './Products.css';
 import axios from 'axios';
@@ -8,7 +8,7 @@ interface ProductsProps {
 }
 
 function Products({ limit }: ProductsProps) {
-  type itemPreview = Pick<Item, 'id' | 'name' | 'image' | 'price' | 'link'>;
+  type itemPreview = Pick<Item, 'productId' | 'name' | 'image' | 'price' | 'link'>;
   const [products, setProducts] = useState<itemPreview[]>([]);
 
   useEffect(() => {
@@ -25,17 +25,17 @@ function Products({ limit }: ProductsProps) {
   }, [limit]);
 
   return (
-    <div className="product-grid">
+    <div className="item-grid">
       {products.map((product) => (
         <div
-          key={product.id}
-          className="product-card"
+          key={product.productId}
+          className="item-card"
           onClick={() => window.location.href = product.link}
         >
-          <img src={product.image} alt={product.name} className="product-image" />
-          <div className="product-details">
-            <h2 className="product-name">{product.name}</h2>
-            <p className="product-price">${product.price}</p>
+          <img src={product.image} alt={product.name} className="item-image" />
+          <div className="item-details">
+            <h2 className="item-name">{product.name}</h2>
+            <p className="item-price">${product.price}</p>
           </div>
         </div>
       ))}

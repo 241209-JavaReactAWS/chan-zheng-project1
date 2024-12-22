@@ -53,3 +53,68 @@
     color: #2980b9;
     text-decoration: underline;
 }
+.create-product-button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .create-product-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .create-product-form-container {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .create-product-form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-product-form-container form div {
+    margin-bottom: 10px;
+  }
+  
+  .create-product-form-container form label {
+    font-weight: bold;
+  }
+  
+  .create-product-form-container form input {
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .create-product-form-container form button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .create-product-form-container form button:hover {
+    background-color: #2980b9;
+  }
+  
+  .create-product-form-container form button[type="button"] {
+    background-color: #e74c3c;
+  }
+  
+  .create-product-form-container form button[type="button"]:hover {
+    background-color: #c0392b;
+  }
+  
