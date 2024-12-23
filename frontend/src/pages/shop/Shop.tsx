@@ -82,14 +82,12 @@ function Shop() {
         <div className="shop-container">
             <h1>Shop All</h1>
 
-            {/* Conditionally render "Create Product" button for admins */}
             {auth?.role === 'ADMIN' && (
                 <button onClick={() => setShowForm(!showForm)} className="create-product-button">
                     Create Product
                 </button>
             )}
 
-            {/* Form for adding a new product */}
             {showForm && (
                 <div className="create-product-form-container">
                     <form onSubmit={handleSubmit}>
@@ -192,7 +190,6 @@ function Shop() {
                                         </button>
                                     )}
 
-                                    {/* Favorite button */}
                                     {auth && (
                                         <button
                                             onClick={() => addToFavorites(product.productId)}

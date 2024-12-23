@@ -1,18 +1,25 @@
 import { Item } from '../Interface/Item';
+import { useNavigate } from 'react-router-dom'; 
 import './Products.css';
 
 interface ProductsProps {
-  products: Item[]; // Receive the list of products from Home component
+  products: Item[]; 
 }
 
 function Products({ products }: ProductsProps) {
+  const navigate = useNavigate(); 
+
+  const handleClick = (productId: number) => {
+    navigate(`/product/${productId}`); 
+  };
+
   return (
     <div className="item-grid">
       {products.map((product) => (
         <div
           key={product.productId}
           className="item-card"
-          onClick={() => window.location.href = product.link}
+          onClick={() => handleClick(product.productId)} 
         >
           <img src={product.image} alt={product.name} className="item-image" />
           <div className="item-details">
