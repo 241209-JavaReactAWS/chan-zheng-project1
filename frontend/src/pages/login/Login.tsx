@@ -1,12 +1,9 @@
-import { FormEvent, SyntheticEvent, useContext, useState } from "react"
-import { authContext } from "../../App"
+import { SyntheticEvent, useState } from "react"
 import "./Login.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 function Login() {
-  const auth = useContext(authContext)
-  
   const [username,setUsername] = useState<string>('')
   const [password,setPassword] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)

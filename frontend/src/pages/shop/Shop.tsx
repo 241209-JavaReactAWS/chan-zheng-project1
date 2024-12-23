@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { authContext } from "../../App";  
 import { Item } from "../../components/Interface/Item";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 import axios from "axios";
 import "./shop.css";
 
@@ -16,6 +16,8 @@ function Shop() {
         image: '',
         link: '',
     });
+
+    const navigate = useNavigate(); // Hook to handle navigation
 
     useEffect(() => {
         axios
@@ -63,6 +65,11 @@ function Shop() {
     };
 
     const addToFavorites = (productId: number) => {
+        if (auth?.role === "unauth") {
+            navigate("/login"); 
+            return;
+        }
+
         axios
             .post(`http://localhost:8080/favorites/${productId}`, {}, { withCredentials: true })
             .then((response) => {
