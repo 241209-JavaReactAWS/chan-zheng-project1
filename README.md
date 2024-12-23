@@ -20,7 +20,7 @@ The project consists of a backend (Java with Spring) and a frontend (TypeScript,
    cd techvault
    ```
 3. Run the application:
- You can run the application from IntelliJ IDEA by selecting the main class (usually annotated with @SpringBootApplication) and running it.
+ You can run the application from IntelliJ IDEA by selecting the main class and running it.
 
 4. Backend runs on `http://localhost:8080` by default.
 
