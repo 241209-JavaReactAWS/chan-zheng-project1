@@ -9,7 +9,7 @@ function Nav() {
   const auth = useContext(authContext)
 
   let logOut = () => {
-    axios.post('http://192.168.0.227:8080/logout', {}, {withCredentials: true})
+    axios.post('http://localhost:8080/logout', {}, {withCredentials: true})
     .then((res) => {
       auth?.setUsername('')
       auth?.setRole('unauth')

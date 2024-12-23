@@ -1,42 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { Item } from "../Interface/Item";
-import "./Products.css"
-import axios from 'axios';
+import { Item } from '../Interface/Item';
+import { useNavigate } from 'react-router-dom'; 
+import './Products.css';
 
-interface ProductsProps{
-    limit?:number
+interface ProductsProps {
+  products: Item[]; 
 }
-function Products({limit}:ProductsProps) {
-    type itemPreview = Pick<Item,'id'|'name'|'image'|'price'|'link'>;
-    const [products,setProducts] = useState<itemPreview[]>([]);
-    useEffect(()=>{
-        axios.get<itemPreview[]>("http://192.168.0.227:8080/product")
-        .then((res) =>{
-            const data = res.data;
-            const limitedProducts = limit ? data.slice(0,limit) : data;
-            setProducts(limitedProducts)
-        })
-        .catch((error)=>{
-            console.error("Error fetching products:",error);
-        })
-    },[limit]);
-    
-    return (
-        <div className='preview-product'>
-            {products.map((product) =>(
-                <div key={product.id}>
-                
-                <img src = {product.image} alt= {product.name} className="product-info" />
-                <div className='product-text-info'>
-                    <h1>{product.name}</h1>
-                </div>  
-                    
-                <button><a href = {product.link}>View More</a></button>
-                </div>
-            ))}
+
+function Products({ products }: ProductsProps) {
+  const navigate = useNavigate(); 
+
+  const handleClick = (productId: number) => {
+    navigate(`/product/${productId}`); 
+  };
+
+  return (
+    <div className="item-grid">
+      {products.map((product) => (
+        <div
+          key={product.productId}
+          className="item-card"
+          onClick={() => handleClick(product.productId)} 
+        >
+          <img src={product.image} alt={product.name} className="item-image" />
+          <div className="item-details">
+            <h2 className="item-name">{product.name}</h2>
+            <p className="item-price">${product.price}</p>
+            <p className="item-description">{product.description}</p>
+          </div>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
-
-export default Products
+export default Products;

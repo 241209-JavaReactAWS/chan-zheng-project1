@@ -1,0 +1,46 @@
+.profile-container {
+  display: flex;
+  gap: 50px;
+  padding: 20px;
+}
+
+.user-info {
+  flex: 0.1;
+  background-color: #f4f4f4;
+  padding: 10px 20px;  
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: black;
+  max-height: 300px; 
+}
+
+.products-showcase {
+  flex: 0.8;
+}
+
+.products-showcase h2 {
+  margin-bottom: 16px;
+  color: black;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: black;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

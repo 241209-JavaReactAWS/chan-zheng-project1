@@ -26,11 +26,9 @@ function Signup() {
             alert("Password is different from confirmation password,please check!")
             return;
         }
-        //send request
         try{
-            const res = await axios.post("http://192.168.0.227:8080/register",{username,password,admin},
+            const res = await axios.post("http://localhost:8080/register",{username,password,admin},
             {withCredentials:true});
-            //allows the JSESSION cookie to be sent, needs when require session
             console.log(res.data);
             console.log("Registration successful!")
             navigate('/login')

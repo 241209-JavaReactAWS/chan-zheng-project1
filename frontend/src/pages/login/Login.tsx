@@ -24,10 +24,10 @@ function Login() {
         alert("Please enter a password")
         return;
     }
-    //send request
-    axios.post("http://192.168.0.227:8080/login",{username,password},
+   
+    axios.post("http://localhost:8080/login",{username,password},
         {withCredentials:true}
-        //allows the JSESSION cookie to be sent, needs when require session
+        
     ).then((res) => {
         console.log(res.data)
         if (auth) {

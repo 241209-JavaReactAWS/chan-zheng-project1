@@ -4,10 +4,11 @@ import { useUserAuth } from './components/UserAuth'
 
 import About from './pages/about/About'
 import Home from './pages/home/Home'
-import Shop from './pages/Shop'
+import Shop from './pages/shop/Shop'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
-import Profile from './pages/Profile'
+import Profile from './pages/profile/Profile'
+import Product from './pages/product/Product'
 
 import Nav from './components/nav/Nav'
 import Footer from './components/footer/Footer'
@@ -44,6 +45,7 @@ function App() {
               <Route path="/signup" element={<Signup />}/>
               <Route path="/login" element={<Login />}/>
               <Route path="/profile" element={<Profile/>}/>
+              <Route path="/product/:productId" element={<Product />}/>
             </Routes>
           </main>
           <Footer />

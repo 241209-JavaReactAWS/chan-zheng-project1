@@ -19,7 +19,7 @@
 
 .welcome-title{
     font-size: 2.5rem;
-    color: 2874a 6px;
+    color: black;
     margin-bottom: 1.5rem;
     font-weight:bold;
     text-shadow:2px 2px 4px rgba(0, 0, 0, 0.1)
@@ -46,52 +46,4 @@ button {
 
 button:hover {
     background-color: #2980b9;
-}
-
-
-nav {
-    background-color: #3498db;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-}
-
-
-
-nav ul li {
-    position: relative;
-    margin: 0 1rem;
-}
-
-
-
-nav ul li a {
-    text-decoration: none;
-    color: #ecf0f1;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-}
-
-
-
-nav ul li a:hover {
-    color: #18394e;
-}
-.footer{
-    background-color: #333;
-    color: white;
-    padding:20px
 }

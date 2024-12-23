@@ -1,6 +1,6 @@
 header {
   width: 100%;
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -8,13 +8,19 @@ header {
   align-items: center;
   padding: 1rem;
   background-color: #3498db;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; 
+  box-sizing: border-box; 
 }
-main{
-  flex: '1 0 auto';
+
+main {
+  margin-top: 80px; 
+  flex: 1;
 }
+
 .app-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
