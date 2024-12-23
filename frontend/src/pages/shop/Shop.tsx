@@ -8,7 +8,8 @@ import "./shop.css";
 function Shop() {
     const auth = useContext(authContext);  
     const [allProduct, setAllproduct] = useState<Item[]>([]);
-    const [showForm, setShowForm] = useState(false);  
+    const [showForm, setShowForm] = useState(false); 
+    const [isFavorite,setIsFavorite] = useState(false);
     const [newProduct, setNewProduct] = useState({
         name: '',
         price: '',
@@ -74,12 +75,26 @@ function Shop() {
             .post(`http://localhost:8080/favorites/${productId}`, {}, { withCredentials: true })
             .then((response) => {
                 console.log("Product added to favorites:", response.data);
+                setIsFavorite(true);
             })
             .catch((error) => {
                 console.error("Error adding product to favorites:", error);
             });
     };
 
+
+    const handleRemoveFavorite = (productId: number) => {
+        if (productId) {
+            axios.delete(`http://localhost:8080/favorites/${productId}`, { withCredentials: true })
+                .then((response) => {
+                    console.log('Product removed from favorites');
+                    setIsFavorite(false);  
+                })
+                .catch((error) => {
+                    console.error('Error removing from favorites:', error);
+                });
+        }
+    };
     return (
         <div className="shop-container">
             <h1>Shop All</h1>
@@ -193,12 +208,22 @@ function Shop() {
                                     )}
 
                                     {auth && (
+                                        !isFavorite?
                                         <button
                                             onClick={() => addToFavorites(product.productId)}
                                             className="favorite-product-button"
                                         >
                                             Add to Favorites
+                                            
                                         </button>
+                                        :
+                                        <button
+                                            onClick={()=>handleRemoveFavorite(product.productId)}
+                                            className="favorite-product-button"
+                                        >
+                                            Remove from Favorites
+                                        </button>
+
                                     )}
                                 </td>
                             </tr>
