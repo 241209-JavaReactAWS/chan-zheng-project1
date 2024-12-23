@@ -7,16 +7,18 @@ function Home() {
   const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
-   
     axios
       .get('http://localhost:8080/product') 
       .then((response) => {
-        setProducts(response.data); 
+        const limitedProducts = response.data.slice(0, 8);
+        setProducts(limitedProducts); 
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
       });
   }, []);
+
+  console.log(products);
 
   return (
     <div className="home-container">

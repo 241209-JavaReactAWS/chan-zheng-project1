@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { authContext } from '../../App'; 
 import './Profile.css';
@@ -27,7 +27,7 @@ function Profile() {
     <div className="profile-container">
       <div className="user-info">
         <h2>User Information</h2>
-        <p>Name: {auth?.username || 'Loading...'}</p>  
+        <p>Username: {auth?.username || 'Loading...'}</p>  
         <p>Role: {auth?.role || 'Loading...'}</p>     
       </div>
 

@@ -1,20 +1,17 @@
-import { FormEvent, SyntheticEvent, useContext, useState } from "react"
-import { authContext } from "../../App"
+import { SyntheticEvent, useState } from "react"
 import "./Login.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 function Login() {
-  const auth = useContext(authContext)
-  
   const [username,setUsername] = useState<string>('')
   const [password,setPassword] = useState<string>('')
   const [showPassword, setShowPassword] = useState<boolean>(false)
   const navigate = useNavigate()
   
-  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-    event.preventDefault()
-
+  const handleSubmit = async(e:SyntheticEvent) => {
+    e.preventDefault()
+    
     console.log("Login!")
     if(!username){
       alert("Please enter a username")
@@ -25,18 +22,15 @@ function Login() {
         return;
     }
    
-    axios.post("http://localhost:8080/login",{username,password},
-        {withCredentials:true}
-        
-    ).then((res) => {
-        console.log(res.data)
-        if (auth) {
-          auth.setUsername(res.data.username)
-          auth.setRole(res.data.role)
-          console.log("login success")
-          navigate("/")
-        }
-    })
+    try{
+      const res = await axios.post("http://localhost:8080/login",{username,password},
+      {withCredentials:true});
+      console.log(res.data);
+      console.log("Login successful!");
+      navigate("/",{ replace: true })
+    } catch(error:any){
+        alert(`Login failed:${error.response.data.message||'Unknown error'}`)
+    }
   }
   
   function togglePassword() {
