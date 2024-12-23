@@ -17,7 +17,7 @@ function Shop() {
         link: '',
     });
 
-    const navigate = useNavigate(); // Hook to handle navigation
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
