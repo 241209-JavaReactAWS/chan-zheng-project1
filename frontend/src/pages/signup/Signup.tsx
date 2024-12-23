@@ -5,7 +5,7 @@ import { SyntheticEvent, useState } from "react"
 
 function Signup() {
     const [username, setUsername] = useState<string>('')
-    const [role, setRole] = useState<string>('') 
+    const [role, setRole] = useState<string>('USER') 
     const [password, setPassword] = useState<string>('')
     const [confirmPassword, setConfirmPassword] = useState<string>('')
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -26,7 +26,7 @@ function Signup() {
             alert("Password is different from confirmation password, please check!")
             return;
         }
-        
+        console.log(role)
         try {
             const res = await axios.post("http://localhost:8080/register", { username, password, role },
                 { withCredentials: true });
@@ -57,8 +57,8 @@ function Signup() {
                     <label htmlFor="role">Role</label>
                     <select className="input-sec" id="role"
                         onChange={(e: SyntheticEvent) => { setRole((e.target as HTMLSelectElement).value) }}>
-                        <option value="ADMIN">Admin</option>
                         <option value="USER">User</option>
+                        <option value="ADMIN">Admin</option>
                     </select>
                 </div>
 
