@@ -1,0 +1,27 @@
+2024-12-19 16:43:25.972828-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:43:31.960339-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:43:33.950603-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:43:34.435020-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:43:34.854012-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:43:35.271730-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:44:03.521317-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:44:22.813056-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
+2024-12-19 16:44:41.594317-05:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "LINK CHARACTER VARYING(255)": "'https://www.amazon.com/ASUS-Gaming-GeForce-Graphics-DisplayPort/dp/B0C7JYX6LN?c... (614)"; SQL statement:
+insert into prodocts (description,image,link,name,price,product_id) values (?,?,?,?,?,?) [22001-224]
