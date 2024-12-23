@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { authContext } from "../../App";  // Assuming this contains user info including the role
+import { authContext } from "../../App";  
 import { Item } from "../../components/Interface/Item";
 import { Link } from "react-router-dom"; 
 import axios from "axios";
 import "./shop.css";
 
 function Shop() {
-    const auth = useContext(authContext);  // Get the auth context which includes user info
+    const auth = useContext(authContext);  
     const [allProduct, setAllproduct] = useState<Item[]>([]);
-    const [showForm, setShowForm] = useState(false);  // State to control form visibility
+    const [showForm, setShowForm] = useState(false);  
     const [newProduct, setNewProduct] = useState({
         name: '',
         price: '',
@@ -39,25 +39,22 @@ function Shop() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         
-        // POST the new product to the server
         axios.post(`http://localhost:8080/product`, newProduct, { withCredentials: true })
             .then((response) => {
                 console.log("Product created:", response.data);
-                setAllproduct([...allProduct, response.data]); // Add new product to the list
-                setShowForm(false);  // Close the form after submission
+                setAllproduct([...allProduct, response.data]); 
+                setShowForm(false); 
             })
             .catch((error) => {
                 console.error("Error creating product:", error);
             });
     };
 
-    // Function to handle deleting a product
     const deleteProduct = (productId: number) => {
         axios
             .delete(`http://localhost:8080/product/${productId}`, { withCredentials: true })
             .then((response) => {
                 console.log("Product deleted:", response.data);
-                // Remove the deleted product from the list
                 setAllproduct(allProduct.filter((product) => product.productId !== productId));
             })
             .catch((error) => {
@@ -65,13 +62,11 @@ function Shop() {
             });
     };
 
-    // Function to handle adding a product to favorites
     const addToFavorites = (productId: number) => {
         axios
             .post(`http://localhost:8080/favorites/${productId}`, {}, { withCredentials: true })
             .then((response) => {
                 console.log("Product added to favorites:", response.data);
-                // Optionally, handle UI feedback (e.g., change button state or show message)
             })
             .catch((error) => {
                 console.error("Error adding product to favorites:", error);

@@ -1,19 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { authContext } from '../../App'; // Import the authContext to get user info
+import { authContext } from '../../App'; 
 import './Profile.css';
-import Products from '../../components/products/Products'; // Assuming Products component is where you display the favorites
+import Products from '../../components/products/Products'; 
 
 function Profile() {
-  const auth = useContext(authContext); // Consume the context to get the current user's info
-  const [favorites, setFavorites] = useState([]);  // State to store favorites data
-  const [loading, setLoading] = useState(true);    // State to track loading status
+  const auth = useContext(authContext); 
+  const [favorites, setFavorites] = useState([]);  
+  const [loading, setLoading] = useState(true);    
 
   useEffect(() => {
-    if (auth?.username) { // Only fetch if user is logged in
-      axios.get('http://localhost:8080/user', { withCredentials: true })  // Adjust this to your actual API endpoint
+    if (auth?.username) { 
+      axios.get('http://localhost:8080/user', { withCredentials: true })  
         .then((response) => {
-          setFavorites(response.data.favorites || []);  // Assuming API returns { favorites: [] }
+          setFavorites(response.data.favorites || []);  
           setLoading(false);
         })
         .catch((error) => {
@@ -21,14 +21,14 @@ function Profile() {
           setLoading(false);
         });
     }
-  }, [auth?.username]);  // Re-run effect if user info changes
+  }, [auth?.username]);  
   console.log(favorites)
   return (
     <div className="profile-container">
       <div className="user-info">
         <h2>User Information</h2>
-        <p>Name: {auth?.username || 'Loading...'}</p>  {/* Display user name */}
-        <p>Role: {auth?.role || 'Loading...'}</p>      {/* Display user role */}
+        <p>Name: {auth?.username || 'Loading...'}</p>  
+        <p>Role: {auth?.role || 'Loading...'}</p>     
       </div>
 
       <div className="products-showcase">
@@ -36,7 +36,7 @@ function Profile() {
         {loading ? (
           <p>Loading favorites...</p>
         ) : (
-          <Products products={favorites} /> // Pass the favorites to the Products component
+          <Products products={favorites} /> 
         )}
       </div>
     </div>

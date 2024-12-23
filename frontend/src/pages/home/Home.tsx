@@ -7,11 +7,11 @@ function Home() {
   const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
-    // Fetch all products from the backend
+   
     axios
-      .get('http://localhost:8080/product') // Fetch all product data
+      .get('http://localhost:8080/product') 
       .then((response) => {
-        setProducts(response.data); // Store the products in state
+        setProducts(response.data); 
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
