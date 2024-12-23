@@ -9,7 +9,8 @@ function Shop() {
     const auth = useContext(authContext);  
     const [allProduct, setAllproduct] = useState<Item[]>([]);
     const [showForm, setShowForm] = useState(false); 
-    const [isFavorite,setIsFavorite] = useState(false);
+    // const [isFavorite,setIsFavorite] = useState(false);
+    const [favorites, setFavorites] = useState<Set<number>>(new Set());
     const [newProduct, setNewProduct] = useState({
         name: '',
         price: '',
@@ -65,36 +66,62 @@ function Shop() {
             });
     };
 
-    const addToFavorites = (productId: number) => {
-        if (auth?.role === "unauth") {
-            navigate("/login"); 
+    // const addToFavorites = (productId: number) => {
+    //     if (auth?.role === "unauth") {
+    //         navigate("/login"); 
+    //         return;
+    //     }
+
+    //     axios
+    //         .post(`http://localhost:8080/favorites/${productId}`, {}, { withCredentials: true })
+    //         .then((response) => {
+    //             console.log("Product added to favorites:", response.data);
+    //             setIsFavorite(true);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error adding product to favorites:", error);
+    //         });
+    // };
+
+
+    const toggleFavorite = async (productId: number) => {
+        if (auth?.role === 'unauth') {
+            navigate('/login');
             return;
         }
 
-        axios
-            .post(`http://localhost:8080/favorites/${productId}`, {}, { withCredentials: true })
-            .then((response) => {
-                console.log("Product added to favorites:", response.data);
-                setIsFavorite(true);
-            })
-            .catch((error) => {
-                console.error("Error adding product to favorites:", error);
-            });
-    };
-
-
-    const handleRemoveFavorite = (productId: number) => {
-        if (productId) {
-            axios.delete(`http://localhost:8080/favorites/${productId}`, { withCredentials: true })
-                .then((response) => {
-                    console.log('Product removed from favorites');
-                    setIsFavorite(false);  
-                })
-                .catch((error) => {
-                    console.error('Error removing from favorites:', error);
+        try {
+            if (favorites.has(productId)) {
+                await axios.delete(
+                    `http://localhost:8080/favorites/${productId}`,
+                    { withCredentials: true }
+                );
+                setFavorites(prev => {
+                    const next = new Set(prev);
+                    next.delete(productId);
+                    console.log("Product has been removed from favorite")
+                    return next;
                 });
+            } else {
+                await axios.post(
+                    `http://localhost:8080/favorites/${productId}`,
+                    {},
+                    { withCredentials: true }
+                ).then((response)=>{
+                    console.log("Product has been added to favorite:",response.data)
+                    setFavorites(prev => new Set(prev).add(productId));
+                })
+                .catch((error)=>{
+                    console.error("Error adding product to favorites:",error)
+                });
+                
+                
+            }
+        } catch (error) {
+            console.error('Error toggling favorite:', error);
         }
     };
+
     return (
         <div className="shop-container">
             <h1>Shop All</h1>
@@ -207,24 +234,15 @@ function Shop() {
                                         </button>
                                     )}
 
-                                    {auth && (
-                                        !isFavorite?
-                                        <button
-                                            onClick={() => addToFavorites(product.productId)}
-                                            className="favorite-product-button"
-                                        >
-                                            Add to Favorites
-                                            
-                                        </button>
-                                        :
-                                        <button
-                                            onClick={()=>handleRemoveFavorite(product.productId)}
-                                            className="favorite-product-button"
-                                        >
-                                            Remove from Favorites
-                                        </button>
-
-                                    )}
+                                    {auth?.role !== 'unauth' && (
+                                    <button
+                                        onClick={() => toggleFavorite(product.productId)}
+                                        className="favorite-product-button"
+                                    >
+                                        {favorites.has(product.productId)
+                                            ? 'Remove from Favorites'
+                                            : 'Add to Favorites'}
+                                    </button>)}
                                 </td>
                             </tr>
                         );
